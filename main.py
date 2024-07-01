@@ -45,7 +45,7 @@ for api_key in api_keys:
     rf = Roboflow(api_key=api_key)
     workspace = rf.workspace()
     project = workspace.create_project(
-        project_name="Test-3",
+        project_name="M-Vet-1",
         project_license="MIT",
         project_type="instance-segmentation",  # Valid project type
         annotation="instance-segmentation"  # Valid annotation type
