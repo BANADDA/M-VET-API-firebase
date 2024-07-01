@@ -31,12 +31,12 @@ db = firestore.client()
 
 # List of Roboflow API keys
 api_keys = [
-    "rf_STiAfodHerMKqPDM9WJd2wPJfi82",
-    "rf_RZVhfpTLCuOu2WtgUdLfmUW26B82",
-    "rf_IwnlGegVmVXuU9vamo9fDg2XFs13",
-    "rf_D7FAgEGBFuOUOYNkNDDpO7JgGrz1",
-    "rf_VHeTb6YwJsQPSOTbbRWgVMhe3QL2",
-    "rf_5iPBswUP22WExBYklQ4TtZPg6t02"
+    "QlP7I2XZtbSOwSXo5wUj",
+    "wQLqqPPbH6g3cUXhvpBP",
+    "ns98yTFDZdp87luZJ4dX",
+    "KI0B8UpPCvzBvAbfcqJr",
+    "Mi2Cn0Abmsj4pwsFwkyd",
+    "nNwtxUK6clKQyPYC6gla"
 ]
 
 # Initialize Roboflow objects and create projects
