@@ -70,22 +70,26 @@ def check_and_upload_images():
     
     while True:
         try:
+            logger.info("Starting to fetch animal_officer documents from Firestore")
             # Fetch all animal_officer documents
             animal_officer_docs = db.collection('animal_officer').stream()
 
             for doc in animal_officer_docs:
                 officer_id = doc.id
+                logger.info(f"Processing officer ID: {officer_id}")
                 animals_ref = db.collection('animal_officer').document(officer_id).collection('animals')
                 animals = animals_ref.stream()
                 
                 for animal in animals:
                     animal_data = animal.to_dict()
                     report_id = animal_data.get('reportId', 'unknown')
+                    logger.info(f"Processing report ID: {report_id}")
                     
                     image_paths = animal_data.get('imagePaths', {})
                     
                     for position, url in image_paths.items():
                         if position in folders:
+                            logger.info(f"Fetching image from URL: {url}")
                             response = requests.get(url)
                             if response.status_code == 200:
                                 # Create an in-memory image file
@@ -111,11 +115,12 @@ def check_and_upload_images():
                                 # Update the project counter
                                 project_counter += 1
                             else:
-                                logger.error(f"Failed to download image from {url}")
+                                logger.error(f"Failed to download image from {url}, status code: {response.status_code}")
+            logger.info("Sleeping for 5 minutes before checking again")
             # Sleep for 5 minutes before checking again
             time.sleep(300)
         except Exception as e:
-            logger.error(f"An error occurred: {e}")
+            logger.error(f"An error occurred: {e}", exc_info=True)
             # Sleep for a short while before retrying in case of error
             time.sleep(60)
 
